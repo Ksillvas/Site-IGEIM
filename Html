@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>IGEIM - Instituto de Genética e Erros Inatos do Metabolismo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="INSTITUTO DE GENÉTICA E ERROS INATOS DO METABOLISMO E OUTRAS DOENÇAS RARAS">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&family=Lexend:wght@400;500;700&display=swap">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { 
+                extend: { 
+                    colors: { 
+                        'brand-dark-blue': '#003366', 
+                        'brand-orange': '#ff9900', 
+                        'brand-light-blue': '#5cace2', 
+                        'brand-light-gray': '#f4f7f9', 
+                        'brand-text': '#2d3748', 
+                        'brand-text-light': '#718096' 
+                    } 
+                } 
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-brand-light-gray">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex items-center justify-between p-4">
+            <a href="/index.php" class="flex items-center gap-3 flex-shrink-0">
+                <img src="/uploads/logos/1757445055_igeim.png" alt="Logo da Plataforma" class="h-10">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="/index.php" class="text-brand-text font-semibold hover:text-brand-orange transition-colors">Início</a>
+                
+                <div class="relative group">
+                    <a href="/sobre.php" class="flex items-center gap-1 text-brand-text font-semibold hover:text-brand-orange transition-colors">
+                        <span>Sobre Nós</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                    <div class="absolute left-0 top-full pt-2 w-48 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-20">
+                        <div class="bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 py-1">
+                            <a href="/sobre.php" class="block px-4 py-2 text-sm text-brand-text hover:bg-brand-light-gray">Quem Somos</a>
+                            <a href="/sobre.php#estrutura" class="block px-4 py-2 text-sm text-brand-text hover:bg-brand-light-gray">Estrutura</a>
+                            <a href="/sobre.php#equipe" class="block px-4 py-2 text-sm text-brand-text hover:bg-brand-light-gray">Equipe</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/cursos.php" class="text-brand-text font-semibold hover:text-brand-orange transition-colors">Cursos (Educa)</a>
+                <a href="/publicacoes.php" class="text-brand-text font-semibold hover:text-brand-orange transition-colors">Eventos e Novidades</a>
+                <a href="/doar.php" class="text-brand-text font-semibold hover:text-brand-orange transition-colors">Como Doar</a>
+                <a href="/contato.php" class="text-brand-text font-semibold hover:text-brand-orange transition-colors">Contato</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <!-- Seletor de Idioma Desktop -->
+                <div id="language-switcher" class="relative hidden md:block">
+                    <button id="language-button" aria-label="Selecionar idioma" class="p-2 rounded-full hover:bg-slate-100 transition-colors">
+                        <svg class="h-6 w-6 text-brand-dark-blue" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="16" height="16"/>
+                            <polyline points="13,19 13,29 29,29 29,13 20,13 "/>
+                            <line x1="11" y1="6" x2="11" y2="8"/>
+                            <line x1="7" y1="9" x2="15" y2="9"/>
+                            <path d="M13,9c0,3.3-2.7,6-6,6"/>
+                            <path d="M9,9c0,3.3,2.7,6,6,6"/>
+                            <polyline points="17,25 21,17 25,25 "/>
+                            <line x1="19" y1="23" x2="23" y2="23"/>
+                        </svg>
+                    </button>
+                    <div id="language-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-slate-200 p-2 hidden z-50">
+                        <a href="javascript:changeLanguage('pt')" class="block w-full text-left px-3 py-2 text-sm text-brand-text hover:bg-brand-light-gray rounded-md font-semibold">Português (Brasil)</a>
+                        <a href="javascript:changeLanguage('en')" class="block w-full text-left px-3 py-2 text-sm text-brand-text hover:bg-brand-light-gray rounded-md">English</a>
+                        <a href="javascript:changeLanguage('es')" class="block w-full text-left px-3 py-2 text-sm text-brand-text hover:bg-brand-light-gray rounded-md">Español</a>
+                    </div>
+                </div>
+
+                <!-- Botão de Acessibilidade -->
+                <div id="accessibility-container" class="relative">
+                    <button id="accessibility-button" aria-label="Abrir menu de acessibilidade" class="p-2 rounded-full hover:bg-slate-100 transition-colors">
+                        <svg class="h-6 w-6 text-brand-dark-blue" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4.143A1.071 1.071 0 1 0 8 2a1.071 1.071 0 0 0 0 2.143m-4.668 1.47 3.24.316v2.5l-.323 4.585A.383.383 0 0 0 7 13.14l.826-4.017c.045-.18.301-.18.346 0L9 13.139a.383.383 0 0 0 .752-.125L9.43 8.43v-2.5l3.239-.316a.38.38 0 0 0-.047-.756H3.379a.38.38 0 0 0-.047.756Z"/>
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8"/>
+                        </svg>
+                    </button>
+                    <div id="accessibility-dropdown" class="absolute right-0 top-full mt-2 w-72 bg-white rounded-lg shadow-xl border border-slate-200 p-4 hidden"></div>
+                </div>
+
+                <nav class="relative hidden md:block">
+                    <a href="/login.php" class="px-5 py-2 rounded-lg text-sm font-bold text-white bg-brand-orange hover:opacity-90 transition-opacity">Entrar / Cadastrar</a>
+                </nav>
+
+                <!-- Menu Mobile Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="p-2 rounded-md text-brand-dark-blue hover:bg-slate-100">
+                        <svg id="menu-icon-open" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                        <svg id="menu-icon-close" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gaveta Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/index.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-slate-100">Início</a>
+                <a href="/sobre.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-slate-100">Sobre Nós</a>
+                <a href="/sobre.php#estrutura" class="block pl-8 pr-3 py-2 rounded-md text-base font-medium text-brand-text-light hover:bg-slate-100">Estrutura</a>
+                <a href="/sobre.php#equipe" class="block pl-8 pr-3 py-2 rounded-md text-base font-medium text-brand-text-light hover:bg-slate-100">Equipe</a>
+                <a href="/cursos.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-slate-100">Cursos (Educa)</a>
+                <a href="/publicacoes.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-slate-100">Eventos e Novidades</a>
+                <a href="/doar.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-light-gray">Como Doar</a>
+                <a href="/contato.php" class="block px-3 py-2 rounded-md text-base font-medium text-brand-text hover:bg-brand-light-gray">Contato</a>
+            
+                <div class="px-3 pt-3 mt-2 border-t border-slate-200">
+                    <span class="block text-sm font-medium text-gray-500 mb-2">Idioma:</span>
+                    <a href="javascript:changeLanguage('pt')" class="block w-full text-left px-3 py-2 text-base font-medium text-brand-text hover:bg-brand-light-gray rounded-md">Português (Brasil)</a>
+                    <a href="javascript:changeLanguage('en')" class="block w-full text-left px-3 py-2 text-base font-medium text-brand-text hover:bg-brand-light-gray rounded-md">English</a>
+                    <a href="javascript:changeLanguage('es')" class="block w-full text-left px-3 py-2 text-base font-medium text-brand-text hover:bg-brand-light-gray rounded-md">Español</a>
+                </div>
+            </div>
+            <div class="pt-4 pb-3 border-t border-slate-200">
+                <div class="px-2">
+                    <a href="/login.php" class="block w-full text-center px-3 py-2 rounded-md text-base font-bold text-white bg-brand-orange hover:opacity-90">Entrar / Cadastrar</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="google_translate_element_desktop" aria-hidden="true"></div>
+        <div id="google_translate_element_mobile" aria-hidden="true"></div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-brand-dark-blue text-white py-20 sm:py-32">
+            <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('../uploads/paginas/home_hero_imagem_1758750046_IGEIM BANNER.png');"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">IGEIM</h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg sm:text-xl text-slate-300">INSTITUTO DE GENÉTICA E ERROS INATOS DO METABOLISMO E OUTRAS DOENÇAS RARAS</p>
+                <a href="sobre.php" class="mt-10 inline-block bg-brand-orange text-white text-lg font-bold py-4 px-10 rounded-lg shadow-lg hover:opacity-90 transition-opacity">Conheça a nossa história</a>
+            </div>
+        </section>
+        
+        <!-- Sobre Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="../uploads/paginas/home_sobre_imagem_1781616745_home_hero_imagem_1758750046_IGEIM BANNER.webp" alt="Sobre o IGEIM" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-brand-dark-blue mb-4">Sobre o IGEIM</h2>
+                    <div class="prose max-w-none text-brand-text leading-relaxed">
+                         <p>Fundado em 2006 para apoiar o Centro de Referência em Erros Inatos do Metabolismo (CREIM) da UNIFESP, o IGEIM oferece atendimento multidisciplinar e humanizado pelo SUS. Nossa estrutura conta com ambulatório, centro de infusão, laboratório e pesquisa clínica para garantir uma assistência de excelência a pacientes com doenças raras.</p>
+                    </div>
+                    <a href="sobre.php" class="mt-8 inline-block bg-brand-dark-blue text-white text-md font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-brand-text transition-colors">Saiba Mais</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços Section -->
+        <section class="py-20 bg-brand-light-gray">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-brand-dark-blue mb-4">Serviços Oferecidos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center">
+                        <img src="../uploads/paginas/home_servicos_imagem1_1781536896_3-IMG_2061.jpg" alt="Assistência a pacientes" class="w-full h-48 object-cover rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-bold text-brand-text">Atendimento Humanizado</h3>
+                        <p class="text-brand-text-light mt-2">Cuidado multidisciplinar e acolhimento para pacientes e familiares.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="../uploads/paginas/home_servicos_imagem2_1781536896_11-IMG_1135.jpg" alt="Pesquisa científica" class="w-full h-48 object-cover rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-bold text-brand-text">Terapia de Reposição Enzimática</h3>
+                        <p class="text-brand-text-light mt-2">Tratamento para doenças genéticas raras.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="../uploads/paginas/home_servicos_imagem3_1781536896_4-IMG_2117.jpg" alt="Educação para profissionais" class="w-full h-48 object-cover rounded-lg shadow-md mb-4">
+                        <h3 class="text-xl font-bold text-brand-text">Estudos Clínicos</h3>
+                        <p class="text-brand-text-light mt-2">Buscamos constantemente novos diagnósticos e tratamentos inovadores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cursos Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-brand-dark-blue mb-12">IGEIM EDUCA: Últimos Cursos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="curso/5/educacao-continuada-para-academicos-da-area-da-saude-em-doencas-raras" class="group flex flex-col bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
