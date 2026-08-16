@@ -1,0 +1,108 @@
+
+/* ==========================================================================
+   Acessibilidade & Personalização
+   ========================================================================== */
+
+/* Modo de Alto Contraste */
+body.alto-contraste { 
+    background-color: #000 !important; 
+    color: #fff !important; 
+}
+body.alto-contraste * { 
+    background-color: transparent !important; 
+    color: #fff !important; 
+    border-color: #fff !important; 
+}
+body.alto-contraste a, 
+body.alto-contraste button { 
+    color: #FFFF00 !important; 
+}
+
+/* Sublinhar Links */
+body.links-sublinhados a { 
+    text-decoration: underline !important; 
+}
+
+/* Modo Escala de Cinza */
+html.modo-cinza { 
+    filter: grayscale(100%); 
+}
+
+/* Fonte Legível */
+body.fonte-legivel, 
+body.fonte-legivel * { 
+    font-family: 'Lexend', sans-serif !important; 
+}
+
+/* Parar Animações */
+body.parar-animacoes *,
+body.parar-animacoes *::before,
+body.parar-animacoes *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+}
+
+/* Espaçamento de Leitura */
+body.espacamento-leitura p,
+body.espacamento-leitura li,
+body.espacamento-leitura h1,
+body.espacamento-leitura h2,
+body.espacamento-leitura h3,
+body.espacamento-leitura span,
+body.espacamento-leitura a {
+    line-height: 1.8 !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.15em !important;
+}
+
+/* Inverter Cores */
+html.cores-invertidas {
+    filter: invert(100%);
+    background-color: #fff;
+}
+html.cores-invertidas img,
+html.cores-invertidas video,
+html.cores-invertidas iframe {
+    filter: invert(100%);
+}
+
+/* Destacar Links */
+body.destacar-links a {
+    background-color: #FFFF00 !important;
+    color: #000 !important;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+/* Toggle Switch */
+.toggle-checkbox:checked { 
+    right: 0; 
+    border-color: #48bb78; 
+}
+.toggle-checkbox:checked + .toggle-label { 
+    background-color: #48bb78; 
+}
+
+/* ==========================================================================
+   Google Translate Fixes
+   ========================================================================== */
+.goog-te-banner-frame.skiptranslate { 
+    display: none !important; 
+} 
+
+body { 
+    top: 0px !important; 
+    font-family: Inter, "Noto Sans", sans-serif;
+}
+
+#google_translate_element_desktop,
+#google_translate_element_mobile {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
