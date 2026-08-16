@@ -1,0 +1,153 @@
+/**
+ * Inicialização da API do Google Translate
+ */
+function googleTranslateElementInit() {
+    const config = {
+        pageLanguage: 'pt',
+        includedLanguages: 'pt,en,es',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+    };
+
+    new google.translate.TranslateElement(config, 'google_translate_element_desktop');
+    new google.translate.TranslateElement(config, 'google_translate_element_mobile');
+}
+
+/**
+ * Altera idioma gravando cookie e recarregando a página
+ */
+function changeLanguage(lang) {
+    const cookieValue = (lang === 'pt') ? '/auto/pt' : '/pt/' + lang;
+    const domain = window.location.hostname === 'localhost' ? 'localhost' : '.' + window.location.hostname;
+    document.cookie = `googtrans=${cookieValue}; path=/; domain=${domain}`;
+    window.location.reload();
+}
+
+/**
+ * Painéis e Funções de Acessibilidade
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // Menus e Dropdowns
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    const accContainer = document.getElementById('accessibility-container');
+    const accButton = document.getElementById('accessibility-button');
+    const accDropdown = document.getElementById('accessibility-dropdown');
+    const langSwitcher = document.getElementById('language-switcher');
+    const langButton = document.getElementById('language-button');
+    const langDropdown = document.getElementById('language-dropdown');
+
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+    }
+
+    if (accButton) {
+        accButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            accDropdown.classList.toggle('hidden');
+            if (langDropdown) langDropdown.classList.add('hidden');
+        });
+    }
+
+    if (langButton) {
+        langButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+            if (accDropdown) accDropdown.classList.add('hidden');
+        });
+    }
+
+    document.addEventListener('click', (event) => {
+        if (accContainer && !accContainer.contains(event.target)) {
+            accDropdown.classList.add('hidden');
+        }
+        if (langSwitcher && !langSwitcher.contains(event.target)) {
+            langDropdown.classList.add('hidden');
+        }
+    });
+
+    // Renderização Dinâmica do Menu de Acessibilidade
+    if (accDropdown) {
+        accDropdown.innerHTML = `
+            <p class="text-lg font-bold text-brand-dark-blue mb-4 text-center">Opções de Acessibilidade</p>
+            <div class="flex items-center justify-between mb-4">
+                <span class="text-brand-text font-semibold">Tamanho da Fonte</span>
+                <div class="flex items-center gap-2">
+                    <button id="font-decrease" aria-label="Diminuir fonte" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 font-bold">-A</button>
+                    <button id="font-increase" aria-label="Aumentar fonte" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 font-bold">+A</button>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Alto Contraste</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-contrast" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-contrast" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Sublinhar Links</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-links" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-links" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Destacar Links</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-highlight-links" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-highlight-links" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Escala de Cinza</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-grayscale" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-grayscale" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Inverter Cores</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-invert" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-invert" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Fonte Legível</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-readable-font" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-readable-font" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Espaçamento de Leitura</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-spacing" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-spacing" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+                <div class="flex items-center justify-between"><span class="text-brand-text font-semibold">Parar Animações</span><div class="relative inline-block w-10 mr-2 align-middle select-none"><input type="checkbox" id="toggle-animations" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/><label for="toggle-animations" class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-300 cursor-pointer"></label></div></div>
+            </div>
+        `;
+    }
+
+    // Configurações e Persistência
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+
+    const options = {
+        fontSize: { increaseBtn: document.getElementById('font-increase'), decreaseBtn: document.getElementById('font-decrease'), step: 1, max: 20, min: 12 },
+        contrast: { checkbox: document.getElementById('toggle-contrast'), key: 'contrastState', className: 'alto-contraste', target: bodyElement },
+        links: { checkbox: document.getElementById('toggle-links'), key: 'linksState', className: 'links-sublinhados', target: bodyElement },
+        grayscale: { checkbox: document.getElementById('toggle-grayscale'), key: 'grayscaleState', className: 'modo-cinza', target: htmlElement },
+        font: { checkbox: document.getElementById('toggle-readable-font'), key: 'readableFontState', className: 'fonte-legivel', target: bodyElement },
+        animations: { checkbox: document.getElementById('toggle-animations'), key: 'animationsState', className: 'parar-animacoes', target: bodyElement },
+        spacing: { checkbox: document.getElementById('toggle-spacing'), key: 'spacingState', className: 'espacamento-leitura', target: bodyElement },
+        invert: { checkbox: document.getElementById('toggle-invert'), key: 'invertState', className: 'cores-invertidas', target: htmlElement },
+        highlightLinks: { checkbox: document.getElementById('toggle-highlight-links'), key: 'highlightLinksState', className: 'destacar-links', target: bodyElement }
+    };
+
+    // Fonte
+    const applyAndSaveFontSize = (size) => {
+        htmlElement.style.fontSize = `${size}px`;
+        localStorage.setItem('fontSize', size);
+    };
+    
+    const savedSize = localStorage.getItem('fontSize');
+    if (savedSize) {
+        htmlElement.style.fontSize = `${savedSize}px`;
+    }
+    
+    if (options.fontSize.increaseBtn) {
+        options.fontSize.increaseBtn.addEventListener('click', () => {
+            const currentSize = parseFloat(window.getComputedStyle(htmlElement).fontSize);
+            applyAndSaveFontSize(Math.min(currentSize + options.fontSize.step, options.fontSize.max));
+        });
+    }
+    if (options.fontSize.decreaseBtn) {
+        options.fontSize.decreaseBtn.addEventListener('click', () => {
+            const currentSize = parseFloat(window.getComputedStyle(htmlElement).fontSize);
+            applyAndSaveFontSize(Math.max(currentSize - options.fontSize.step, options.fontSize.min));
+        });
+    }
+
+    // Toggles
+    ['contrast', 'links', 'grayscale', 'font', 'animations', 'spacing', 'invert', 'highlightLinks'].forEach(key => {
+        const option = options[key];
+        if (option.checkbox) {
+            if (localStorage.getItem(option.key) === 'enabled') {
+                option.target.classList.add(option.className);
+                option.checkbox.checked = true;
+            }
+            option.checkbox.addEventListener('change', () => {
+                option.target.classList.toggle(option.className);
+                localStorage.setItem(option.key, option.checkbox.checked ? 'enabled' : 'disabled');
+            });
+        }
+    });
+});
